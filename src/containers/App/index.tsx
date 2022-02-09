@@ -1,48 +1,30 @@
-import React, { useState } from "react";
-import { ConfigProvider } from "antd";
-import { ThemeSwitcherProvider } from "react-css-theme-switcher";
-import { useTranslation } from "react-i18next";
-import "moment/locale/he";
-import Header from "components/Header";
-import Main from "components/Main";
-import styles from "./styles.module.scss";
-
-import { Provider } from "mobx-react";
-import store from "stores";
+import React, { useState } from 'react'
+import { Provider } from 'mobx-react'
+import { ConfigProvider } from 'antd'
+import { ThemeSwitcherProvider } from 'react-css-theme-switcher'
+import { useTranslation } from 'react-i18next'
+import 'moment/locale/he'
+import 'moment/locale/ru'
+import 'moment/locale/uk'
+import Header from 'components/Header'
+import Main from 'components/Main'
+import Keyboard from 'components/Keyboard'
+import { observer } from 'mobx-react-lite'
+import store from 'stores'
+import { themes } from 'themes'
+import styles from './styles.module.scss'
 
 const App = () => {
-  const { t } = useTranslation();
-
-  const themes = {
-    light: `${process.env.PUBLIC_URL}/styles/antd.min.css`,
-    dark: `${process.env.PUBLIC_URL}/styles/antd.dark.min.css`,
-  };
-
-  const [currentColorScheme, setCurrentColorScheme] = useState(
-    getCurrentColorScheme
-  );
-
-  function getCurrentColorScheme() {
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      return "dark";
-    } else {
-      return "light";
-    }
-  }
-
-  function colorSchemeChangeHandler() {
-    setCurrentColorScheme(getCurrentColorScheme());
-  }
-
-  let colorSchemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
-  colorSchemeQuery.addEventListener("change", colorSchemeChangeHandler);
+  const { t } = useTranslation()
 
   return (
     <Provider {...store}>
       <ThemeSwitcherProvider
-        defaultTheme={currentColorScheme}
+        defaultTheme={
+          store.settingsStore.settings.darkScheme ? 'dark' : 'light'
+        }
         themeMap={themes}
-        insertionPoint={document.getElementById("inject-styles-here")}
+        insertionPoint={document.getElementById('inject-styles-here')}
       >
         <ConfigProvider
           direction={store.localeStore.antdDirection}
@@ -51,11 +33,12 @@ const App = () => {
           <div className={styles.app}>
             <Header />
             <Main />
+            <Keyboard />
           </div>
         </ConfigProvider>
       </ThemeSwitcherProvider>
     </Provider>
-  );
-};
+  )
+}
 
-export default App;
+export default observer(App)

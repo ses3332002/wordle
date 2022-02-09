@@ -4,5 +4,8 @@
   "english_selector": "שפה אנגלית",
   "hebrew_selector": "שפה עברית",
   "russian_selector": "שפה רוסית",
-  "ukranian_selector": "השפה האוקראינית"
+  "ukranian_selector": "השפה האוקראינית",
+  "game": "מִשְׂחָק",
+  "settings": "הגדרות",
+  "dark_mode": "מצב כהה"
 }

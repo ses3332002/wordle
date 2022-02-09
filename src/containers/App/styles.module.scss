@@ -1,3 +1,11 @@
+@import '../../sources/styles/variables';
+
 .app {
-  text-align: center;
+  margin: 0 auto;
+  display: flex;
+  max-width: $tabletWidth;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }

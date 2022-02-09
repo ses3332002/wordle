@@ -4,5 +4,8 @@
   "english_selector": "English language",
   "hebrew_selector": "Hebrew language",
   "russian_selector": "Russian language",
-  "ukranian_selector": "Ukranian language"
+  "ukranian_selector": "Ukranian language",
+  "game": "Game",
+  "settings": "Settings",
+  "dark_mode": "Dark mode"
 }

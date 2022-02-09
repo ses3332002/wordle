@@ -1,18 +1,15 @@
 @import '../../sources/styles/variables';
 
 .container {
-  padding: $desktopPadding;
-  box-sizing: border-box;
+  // padding: $desktopPadding;
+  width: 100%;
+  min-height: 600px;
+  // align-self: stretch;
+
+  // justify-self: stretch;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
   background-color: $backgroundColor;
-  @media screen and (prefers-color-scheme: dark) {
-    background-color: $backgroundColorDark;
-  }
-
-  @media screen and (max-width: $mobileWidth) {
-    padding: $mobilePadding;
-  }
 }

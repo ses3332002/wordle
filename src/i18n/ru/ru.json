@@ -4,5 +4,8 @@
   "english_selector": "Английский язык",
   "hebrew_selector": "Иврит",
   "russian_selector": "Русский язык",
-  "ukranian_selector": "Украинский язык"
+  "ukranian_selector": "Украинский язык",
+  "game": "Игра",
+  "settings": "Настройки",
+  "dark_mode": "Темный режим"
 }
