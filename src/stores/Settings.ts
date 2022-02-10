@@ -1,5 +1,6 @@
 import { observable, action, computed, autorun, makeAutoObservable } from 'mobx'
 import { ISettings } from '../models'
+import { getCurrentColorScheme } from '../themes'
 
 class SettingsStore {
   constructor() {
@@ -7,8 +8,9 @@ class SettingsStore {
   }
 
   @observable settings: ISettings = {
-    darkScheme: true,
+    darkScheme: undefined,
     settingsIsShown: false,
+    activeLine: 1,
   }
 
   @action showSettings = (): void => {
@@ -26,26 +28,28 @@ class SettingsStore {
 
 const settingsStore = new SettingsStore()
 
-// function checkLocalStorage(locale: TLocaleName) {
-//   if (localStorage.getItem('locale')) {
-//     if (locale === undefined) {
-//       localeStore.setLocale(localStorage.getItem('locale') as TLocaleName)
-//       return
-//     }
-//     if (localStorage.getItem('locale') !== locale) {
-//       localStorage.setItem('locale', locale as string)
-//     }
-//   } else if (!localStorage.getItem('locale')) {
-//     localeStore.setLocale(i18n.resolvedLanguage as TLocaleName)
-//     localStorage.setItem('locale', i18n.resolvedLanguage)
-//   }
-// }
+function checkLocalStorage(darkScheme: boolean | undefined): void {
+  if (localStorage.getItem('colorScheme')) {
+    if (darkScheme === undefined) {
+      settingsStore.setDarkScheme(
+        localStorage.getItem('colorScheme') === 'dark'
+      )
+      return
+    }
+    if (
+      localStorage.getItem('colorScheme') !== (darkScheme && 'dark') ||
+      'light'
+    ) {
+      localStorage.setItem('colorScheme', (darkScheme && 'dark') || 'light')
+    }
+  } else if (!localStorage.getItem('colorScheme')) {
+    settingsStore.setDarkScheme(getCurrentColorScheme() === 'dark')
+    localStorage.setItem('colorScheme', getCurrentColorScheme())
+  }
+}
 
-// autorun(() => {
-//   checkLocalStorage(localeStore.locale.name)
-//   moment.locale(localeStore.locale.name)
-//   i18n.changeLanguage(localeStore.locale.name)
-//   doc.setAttribute('lang', localeStore.locale.name as string)
-// })
+autorun(() => {
+  checkLocalStorage(settingsStore.settings.darkScheme)
+})
 
 export default settingsStore

@@ -55,7 +55,7 @@ class LocaleStore {
 
 const localeStore = new LocaleStore()
 
-function checkLocalStorage(locale: TLocaleName) {
+function checkLocalStorage(locale: TLocaleName): void {
   if (localStorage.getItem('locale')) {
     if (locale === undefined) {
       localeStore.setLocale(localStorage.getItem('locale') as TLocaleName)

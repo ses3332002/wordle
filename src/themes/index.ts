@@ -11,13 +11,6 @@ export function getCurrentColorScheme(): 'dark' | 'light' {
   }
 }
 
-// const [currentColorScheme, setCurrentColorScheme] = useState(
-//   getCurrentColorScheme
-// )
-
-// function colorSchemeChangeHandler() {
-//     setCurrentColorScheme(getCurrentColorScheme())
-// }
-
-export let colorSchemeQuery = window.matchMedia('(prefers-color-scheme: dark)')
-// colorSchemeQuery.addEventListener('change', colorSchemeChangeHandler)
+export const colorSchemeQuery = window.matchMedia(
+  '(prefers-color-scheme: dark)'
+)

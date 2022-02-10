@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { Provider } from 'mobx-react'
 import { ConfigProvider } from 'antd'
 import { ThemeSwitcherProvider } from 'react-css-theme-switcher'
-import { useTranslation } from 'react-i18next'
+import { colorSchemeQuery, getCurrentColorScheme } from '../../themes'
+// import { useTranslation } from 'react-i18next'
 import 'moment/locale/he'
 import 'moment/locale/ru'
 import 'moment/locale/uk'
@@ -14,8 +15,13 @@ import store from 'stores'
 import { themes } from 'themes'
 import styles from './styles.module.scss'
 
-const App = () => {
-  const { t } = useTranslation()
+const App = (): React.ReactElement => {
+  // const { t } = useTranslation()
+  colorSchemeQuery.addEventListener('change', () => {
+    store.settingsStore.setDarkScheme(
+      getCurrentColorScheme() === 'dark' ? true : false
+    )
+  })
 
   return (
     <Provider {...store}>
