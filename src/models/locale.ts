@@ -1,4 +1,6 @@
-export type TLocaleName = 'en' | 'he' | 'ru' | 'uk' | undefined
+export type TLocaleNameStrict = 'en' | 'he' | 'ru' | 'uk'
+
+export type TLocaleName = TLocaleNameStrict | undefined
 
 export interface ILocale {
   name: TLocaleName

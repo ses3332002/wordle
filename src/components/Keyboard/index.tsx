@@ -1,14 +1,21 @@
 import React from 'react'
-import { Card, Row, Col, Typography } from 'antd'
-import { useTranslation } from 'react-i18next'
-import styles from './styles.module.scss'
+import { keyboards } from 'i18n/keyboards'
+import { useStore } from 'stores'
+import { TLocaleNameStrict } from 'models'
 
-function Keyboard(props: any): React.ReactElement {
-  const { Title, Text } = Typography
-  const { t } = useTranslation()
+import styles from './styles.module.scss'
+import KeyboardRow from 'components/KeyboardRow'
+
+function Keyboard(): React.ReactElement {
+  const { localeStore } = useStore()
+
+  const keys = keyboards[localeStore.locale.name as TLocaleNameStrict]
+
   return (
     <div className={styles.keyboard}>
-      <Row align="middle" justify="space-between"></Row>
+      <KeyboardRow key={1} rowKeys={keys.slice(0, 12)} />
+      <KeyboardRow key={2} rowKeys={keys.slice(12, 24)} />
+      <KeyboardRow key={3} rowKeys={keys.slice(24, 36)} />
     </div>
   )
 }
