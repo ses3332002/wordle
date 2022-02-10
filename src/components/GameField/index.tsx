@@ -1,12 +1,20 @@
 import React from 'react'
-import { Card, Row, Col, Typography } from 'antd'
-import { useTranslation } from 'react-i18next'
-import styles from './styles.module.scss'
+// import { Card, Row, Col } from 'antd'
+import { useStore } from 'stores'
+
+// import styles from './styles.module.scss'
+import GamefieldRow from 'components/GamefieldRow'
+import { observer } from 'mobx-react-lite'
 
 function GameField(): React.ReactElement {
-  const { Title, Text } = Typography
-  const { t } = useTranslation()
-  return <></>
+  const { settingsStore } = useStore()
+  return (
+    <>
+      {settingsStore.settings.gameField.map((item, index) => (
+        <GamefieldRow value={item} key={index.toString()} />
+      ))}
+    </>
+  )
 }
 
-export default GameField
+export default observer(GameField)
