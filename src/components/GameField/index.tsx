@@ -11,7 +11,7 @@ function GameField(): React.ReactElement {
   return (
     <>
       {settingsStore.settings.gameField.map((item, index) => (
-        <GamefieldRow value={item} key={index.toString()} />
+        <GamefieldRow rowNumber={index} value={item} key={index.toString()} />
       ))}
     </>
   )

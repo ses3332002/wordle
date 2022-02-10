@@ -21,6 +21,10 @@ class SettingsStore {
     activeLine: 0,
     testingLine: '',
     isStarted: false,
+    hiddenWord: 'песня',
+    lettersMissed: [],
+    lettersMatched: [],
+    attempts: [],
     gameField: [
       ['', '', '', '', ''],
       ['', '', '', '', ''],
@@ -43,7 +47,7 @@ class SettingsStore {
     this.settings.darkScheme = state
   }
 
-  @action testLetter = (letter: string): void => {
+  @action addLetter = (letter: string): void => {
     if (this.settings.testingLine.length === 5) {
       return
     }
@@ -67,8 +71,23 @@ class SettingsStore {
       if (this.settings.activeLine < 5) {
         this.settings.activeLine++
       }
+      this.checkLetters()
       this.settings.testingLine = ''
-      console.log('testing!')
+    }
+  }
+
+  checkLetters = (): void => {
+    console.log('testing...')
+    this.settings.attempts.push(this.settings.testingLine)
+    this.settings.testingLine.split('').forEach(letter => {
+      if (this.settings.hiddenWord.includes(letter)) {
+        this.settings.lettersMatched.push(letter)
+      } else {
+        this.settings.lettersMissed.push(letter)
+      }
+    })
+    if (this.settings.hiddenWord === this.settings.testingLine) {
+      console.log('you won!')
     }
   }
 

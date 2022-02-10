@@ -1,8 +1,9 @@
 import React from 'react'
 import { Button } from 'antd'
 import { useStore } from 'stores'
+import { observer } from 'mobx-react-lite'
 
-// import styles from './styles.module.scss'
+import styles from './styles.module.scss'
 import {
   LeftOutlined,
   CloseSquareOutlined,
@@ -23,7 +24,7 @@ function KeyboardKey({
     } else if (item === 'check') {
       settingsStore.checkWord()
     } else {
-      settingsStore.testLetter(item as string)
+      settingsStore.addLetter(item as string)
     }
   }
 
@@ -36,6 +37,13 @@ function KeyboardKey({
       style={{ margin: 4, fontSize: 20, height: 46 }}
       size="large"
       onClick={handleClick}
+      className={
+        settingsStore.settings.lettersMatched.includes(item)
+          ? styles.matched
+          : settingsStore.settings.lettersMissed.includes(item)
+          ? styles.missed
+          : ''
+      }
     >
       {item === 'backspace' ? (
         <>
@@ -51,4 +59,4 @@ function KeyboardKey({
   )
 }
 
-export default KeyboardKey
+export default observer(KeyboardKey)
