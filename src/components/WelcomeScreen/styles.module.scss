@@ -6,4 +6,10 @@
   justify-content: flex-start;
   flex-direction: column;
   margin: 20px;
+
+  :global {
+    .ant-typography {
+      margin-top: 0 !important;
+    }
+  }
 }

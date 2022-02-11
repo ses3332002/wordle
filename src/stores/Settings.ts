@@ -81,14 +81,10 @@ class SettingsStore {
     } else {
       if (!this.settings.words.includes(this.settings.testingLine)) {
         this.settings.wordIsIncorrect = true
-
         return
-      } else {
-        if (this.settings.activeRow < this.MAXLINES) {
-          this.settings.activeRow++
-        }
       }
       this.checkLetters()
+      this.settings.activeRow++
       this.settings.testingLine = ''
     }
   }
