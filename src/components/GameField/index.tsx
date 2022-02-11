@@ -1,8 +1,5 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
-import { message } from 'antd'
-import { useTranslation } from 'react-i18next'
-
 import GamefieldRow from 'components/GamefieldRow'
 import { useStore } from 'stores'
 
@@ -10,11 +7,6 @@ import { useStore } from 'stores'
 
 function GameField(): React.ReactElement {
   const { settingsStore } = useStore()
-  const { t } = useTranslation()
-
-  if (settingsStore.settings.wordIsIncorrect) {
-    message.warning(t('no_such_word'), 1)
-  }
 
   return (
     <>

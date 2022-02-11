@@ -2,6 +2,7 @@ import React from 'react'
 import { Button } from 'antd'
 import { useStore } from 'stores'
 import { observer } from 'mobx-react-lite'
+import classNames from 'classnames/bind'
 
 import styles from './styles.module.scss'
 import {
@@ -17,6 +18,15 @@ function KeyboardKey({
 }): React.ReactElement | null {
   const isService = item === 'check' || item === 'backspace'
   const { settingsStore } = useStore()
+  const cx = classNames.bind(styles)
+  const className = cx([
+    settingsStore.settings.lettersMatched.includes(item as string)
+      ? 'matched'
+      : '',
+    settingsStore.settings.lettersMissed.includes(item as string)
+      ? 'missed'
+      : '',
+  ])
 
   function handleClick(): void {
     if (item === 'backspace') {
@@ -37,13 +47,8 @@ function KeyboardKey({
       style={{ margin: 4, fontSize: 20, height: 46 }}
       size="large"
       onClick={handleClick}
-      className={
-        settingsStore.settings.lettersMatched.includes(item)
-          ? styles.matched
-          : settingsStore.settings.lettersMissed.includes(item)
-          ? styles.missed
-          : ''
-      }
+      disabled={!settingsStore.settings.isStarted}
+      className={className}
     >
       {item === 'backspace' ? (
         <>

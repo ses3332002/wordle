@@ -17,16 +17,15 @@ function GamefieldCell({
   const { settingsStore } = useStore()
 
   function makeTwist(rowNumber: number): string {
-    if (rowNumber === settingsStore.settings.activeLine - 1) {
+    if (rowNumber === settingsStore.settings.activeRow - 1) {
       return 'twist'
     } else {
       return ''
     }
-    return ''
   }
 
   function getLetterStyle(item: string): string {
-    if (settingsStore.settings.activeLine > rowNumber) {
+    if (settingsStore.settings.activeRow > rowNumber) {
       if (settingsStore.settings.lettersMissed.includes(item)) {
         return 'missed'
       } else if (settingsStore.settings.lettersMatched.includes(item)) {

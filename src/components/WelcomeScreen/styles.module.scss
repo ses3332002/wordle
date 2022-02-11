@@ -1,11 +1,9 @@
 @import '../../sources/styles/variables';
 
-.container {
-  width: 100%;
-  min-height: 600px;
+.welcome {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  background-color: $backgroundColor;
+  flex-direction: column;
+  margin: 20px;
 }

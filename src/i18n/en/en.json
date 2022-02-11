@@ -8,5 +8,10 @@
   "game": "Game",
   "settings": "Settings",
   "dark_mode": "Dark mode",
-  "no_such_word": "No such word in our game"
+  "no_such_word": "No such word in our game",
+  "welcome_text": "You can choose language before start",
+  "start": "Start game",
+  "won_text": "You have won at attempts:",
+  "want_more": "Once more?",
+  "lose": "Unfortunately, you lost. No more attempts."
 }

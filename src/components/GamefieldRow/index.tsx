@@ -17,7 +17,7 @@ function GamefieldRow({
   const cx = classNames.bind(styles)
   const className = cx([
     'gamefield_row',
-    rowNumber === settingsStore.settings.activeLine &&
+    rowNumber === settingsStore.settings.activeRow &&
     settingsStore.settings.wordIsIncorrect
       ? 'incorrect'
       : '',
