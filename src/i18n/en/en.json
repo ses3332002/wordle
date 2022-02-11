@@ -7,5 +7,6 @@
   "ukranian_selector": "Ukranian language",
   "game": "Game",
   "settings": "Settings",
-  "dark_mode": "Dark mode"
+  "dark_mode": "Dark mode",
+  "no_such_word": "No such word in our game"
 }

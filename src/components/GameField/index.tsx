@@ -1,13 +1,21 @@
 import React from 'react'
-// import { Card, Row, Col } from 'antd'
+import { observer } from 'mobx-react-lite'
+import { message } from 'antd'
+import { useTranslation } from 'react-i18next'
+
+import GamefieldRow from 'components/GamefieldRow'
 import { useStore } from 'stores'
 
 // import styles from './styles.module.scss'
-import GamefieldRow from 'components/GamefieldRow'
-import { observer } from 'mobx-react-lite'
 
 function GameField(): React.ReactElement {
   const { settingsStore } = useStore()
+  const { t } = useTranslation()
+
+  if (settingsStore.settings.wordIsIncorrect) {
+    message.warning(t('no_such_word'), 1)
+  }
+
   return (
     <>
       {settingsStore.settings.gameField.map((item, index) => (

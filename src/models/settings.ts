@@ -6,7 +6,8 @@ export interface ISettings {
   isStarted: boolean
   hiddenWord: string
   lettersMatched: Array<string>
-  attempts: Array<string>
+  words: Array<string>
   lettersMissed: Array<string>
   gameField: Array<Array<string>>
+  wordIsIncorrect: boolean
 }

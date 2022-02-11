@@ -1,9 +1,9 @@
 import React from 'react'
-// import { Card, Row, Col, Typography } from 'antd'
-// import { useStore } from 'stores'
 import { observer } from 'mobx-react-lite'
-import styles from './styles.module.scss'
+import classNames from 'classnames/bind'
 import { useStore } from 'stores'
+
+import styles from './styles.module.scss'
 
 function GamefieldCell({
   item,
@@ -15,10 +15,41 @@ function GamefieldCell({
   cellNumber: number
 }): React.ReactElement {
   const { settingsStore } = useStore()
-  const conditionStyle = settingsStore.settings.lettersMissed.includes(item)
-    ? 'missed'
-    : ''
-  return <div className={styles.gamefield_cell}>{item.toUpperCase()}</div>
+
+  function makeTwist(rowNumber: number): string {
+    if (rowNumber === settingsStore.settings.activeLine - 1) {
+      return 'twist'
+    } else {
+      return ''
+    }
+    return ''
+  }
+
+  function getLetterStyle(item: string): string {
+    if (settingsStore.settings.activeLine > rowNumber) {
+      if (settingsStore.settings.lettersMissed.includes(item)) {
+        return 'missed'
+      } else if (settingsStore.settings.lettersMatched.includes(item)) {
+        if (settingsStore.settings.hiddenWord.indexOf(item) === cellNumber) {
+          return 'exactly'
+        } else {
+          return 'matched'
+        }
+      }
+    } else {
+      return ''
+    }
+    return ''
+  }
+
+  const cx = classNames.bind(styles)
+  const className = cx([
+    'gamefield_cell',
+    getLetterStyle(item),
+    makeTwist(rowNumber),
+  ])
+
+  return <div className={className}>{item.toUpperCase()}</div>
 }
 
 export default observer(GamefieldCell)

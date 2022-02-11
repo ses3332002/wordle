@@ -7,5 +7,6 @@
   "ukranian_selector": "Украинский язык",
   "game": "Игра",
   "settings": "Настройки",
-  "dark_mode": "Темный режим"
+  "dark_mode": "Темный режим",
+  "no_such_word": "В игре нет такого слова"
 }

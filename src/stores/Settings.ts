@@ -22,9 +22,10 @@ class SettingsStore {
     testingLine: '',
     isStarted: false,
     hiddenWord: 'песня',
+    words: ['песня', 'пісня', 'world'],
     lettersMissed: [],
     lettersMatched: [],
-    attempts: [],
+    wordIsIncorrect: false,
     gameField: [
       ['', '', '', '', ''],
       ['', '', '', '', ''],
@@ -61,6 +62,7 @@ class SettingsStore {
       return
     }
     this.settings.testingLine = this.settings.testingLine.slice(0, -1)
+    this.settings.wordIsIncorrect = false
     this.fillLine()
   }
 
@@ -68,8 +70,13 @@ class SettingsStore {
     if (this.settings.testingLine.length !== 5) {
       return
     } else {
-      if (this.settings.activeLine < 5) {
-        this.settings.activeLine++
+      if (!this.settings.words.includes(this.settings.testingLine)) {
+        this.settings.wordIsIncorrect = true
+        return
+      } else {
+        if (this.settings.activeLine < 6) {
+          this.settings.activeLine++
+        }
       }
       this.checkLetters()
       this.settings.testingLine = ''
@@ -77,8 +84,6 @@ class SettingsStore {
   }
 
   checkLetters = (): void => {
-    console.log('testing...')
-    this.settings.attempts.push(this.settings.testingLine)
     this.settings.testingLine.split('').forEach(letter => {
       if (this.settings.hiddenWord.includes(letter)) {
         this.settings.lettersMatched.push(letter)

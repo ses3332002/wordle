@@ -1,8 +1,10 @@
 import React from 'react'
 import { Row } from 'antd'
-import styles from './styles.module.scss'
+import classNames from 'classnames/bind'
 import GamefieldCell from 'components/GamefieldCell'
 import { observer } from 'mobx-react-lite'
+import { useStore } from 'stores'
+import styles from './styles.module.scss'
 
 function GamefieldRow({
   rowNumber,
@@ -11,9 +13,17 @@ function GamefieldRow({
   rowNumber: number
   value: Array<string>
 }): React.ReactElement {
-  // const { Title, Text } = Typography
+  const { settingsStore } = useStore()
+  const cx = classNames.bind(styles)
+  const className = cx([
+    'gamefield_row',
+    rowNumber === settingsStore.settings.activeLine &&
+    settingsStore.settings.wordIsIncorrect
+      ? 'incorrect'
+      : '',
+  ])
   return (
-    <div className={styles.gamefield_row}>
+    <div className={className}>
       <Row align="middle" justify="space-between">
         {value.map((item, index) => (
           <GamefieldCell
