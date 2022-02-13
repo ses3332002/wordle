@@ -7,9 +7,11 @@ import {
   // reaction,
   // toJS,
 } from 'mobx'
-import { ISettings } from '../models'
+import { ISettings, TLocaleNameStrict } from '../models'
+import { wordsArray } from 'i18n/words'
 import { getCurrentColorScheme } from '../themes'
 import { message } from 'antd'
+import localeStore from './Locale'
 import { t } from 'i18next'
 
 class SettingsStore {
@@ -17,16 +19,14 @@ class SettingsStore {
     makeAutoObservable(this)
   }
 
-  MAXLINES = 6
-
   @observable settings: ISettings = {
     darkScheme: undefined,
     settingsIsShown: false,
     activeRow: 0,
     testingLine: '',
     isStarted: false,
-    hiddenWord: 'песня',
-    words: ['песня', 'песок', 'пісня', 'world'],
+    hiddenWord: '',
+    words: [],
     lettersMissed: [],
     lettersMatched: [],
     wordIsIncorrect: false,
@@ -101,7 +101,7 @@ class SettingsStore {
     if (this.settings.hiddenWord === this.settings.testingLine) {
       this.settings.isWon = true
       this.settings.isStarted = false
-    } else if (this.settings.activeRow === this.MAXLINES) {
+    } else if (this.settings.activeRow === this.settings.gameField.length - 1) {
       this.settings.isLose = true
       this.settings.isStarted = false
     }
@@ -112,6 +112,11 @@ class SettingsStore {
     this.settings.isLose = false
     this.settings.isStarted = true
     this.settings.activeRow = 0
+    this.settings.words =
+      wordsArray[localeStore.locale.name as TLocaleNameStrict]
+    this.settings.hiddenWord = this.settings.words[
+      Math.floor(Math.random() * this.settings.words.length)
+    ]
     this.settings.testingLine = ''
     this.settings.lettersMissed.length = 0
     this.settings.lettersMatched.length = 0

@@ -7,7 +7,7 @@ import ukUA from 'antd/lib/locale/uk_UA'
 import moment from 'moment'
 import i18n from 'i18n/i18n'
 
-let doc = document.querySelector('HTML') as Element
+const doc = document.querySelector('HTML') as Element
 
 class LocaleStore {
   constructor() {

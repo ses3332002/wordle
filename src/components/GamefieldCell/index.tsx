@@ -29,7 +29,7 @@ function GamefieldCell({
       if (settingsStore.settings.lettersMissed.includes(item)) {
         return 'missed'
       } else if (settingsStore.settings.lettersMatched.includes(item)) {
-        if (settingsStore.settings.hiddenWord.indexOf(item) === cellNumber) {
+        if (settingsStore.settings.hiddenWord.includes(item, cellNumber)) {
           return 'exactly'
         } else {
           return 'matched'
