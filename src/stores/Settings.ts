@@ -5,7 +5,7 @@ import {
   autorun,
   makeAutoObservable,
   // reaction,
-  toJS,
+  // toJS,
 } from 'mobx'
 import { ISettings, TLocaleNameStrict } from '../models'
 import { wordsArray } from 'i18n/words'
@@ -55,7 +55,26 @@ class SettingsStore {
   }
 
   @action startGame = (): void => {
-    this.prepareApp()
+    this.settings.isWon = false
+    this.settings.isLose = false
+    this.settings.isStarted = true
+    this.settings.activeRow = 0
+    this.settings.words =
+      wordsArray[localeStore.locale.name as TLocaleNameStrict]
+    this.settings.hiddenWord = this.settings.words[
+      Math.floor(Math.random() * this.settings.words.length)
+    ]
+    this.settings.testingLine = ''
+    this.settings.lettersMissed.length = 0
+    this.settings.lettersMatched.length = 0
+    this.settings.gameField = [
+      ['', '', '', '', ''],
+      ['', '', '', '', ''],
+      ['', '', '', '', ''],
+      ['', '', '', '', ''],
+      ['', '', '', '', ''],
+      ['', '', '', '', ''],
+    ]
   }
 
   @action addLetter = (letter: string): void => {
@@ -83,57 +102,34 @@ class SettingsStore {
         this.settings.wordIsIncorrect = true
         return
       }
-      this.checkLetters()
+      this.settings.testingLine.split('').forEach(letter => {
+        if (this.settings.hiddenWord.includes(letter)) {
+          this.settings.lettersMatched.push(letter)
+        } else {
+          this.settings.lettersMissed.push(letter)
+        }
+      })
+
+      if (this.settings.hiddenWord === this.settings.testingLine) {
+        const temp = setTimeout(() => {
+          this.settings.isWon = true
+          this.settings.isStarted = false
+          clearTimeout(temp)
+        }, 1000)
+      } else if (
+        this.settings.activeRow ===
+        this.settings.gameField.length - 1
+      ) {
+        const temp = setTimeout(() => {
+          this.settings.isLose = true
+          this.settings.isStarted = false
+          clearTimeout(temp)
+        }, 1000)
+      }
+
       this.settings.activeRow++
       this.settings.testingLine = ''
     }
-  }
-
-  checkLetters = (): void => {
-    this.settings.testingLine.split('').forEach(letter => {
-      if (this.settings.hiddenWord.includes(letter)) {
-        this.settings.lettersMatched.push(letter)
-      } else {
-        this.settings.lettersMissed.push(letter)
-      }
-    })
-
-    if (this.settings.hiddenWord === this.settings.testingLine) {
-      const temp = setTimeout(() => {
-        this.settings.isWon = true
-        this.settings.isStarted = false
-        clearTimeout(temp)
-      }, 1000)
-    } else if (this.settings.activeRow === this.settings.gameField.length - 1) {
-      const temp = setTimeout(() => {
-        this.settings.isLose = true
-        this.settings.isStarted = false
-        clearTimeout(temp)
-      }, 1000)
-    }
-  }
-
-  prepareApp = (): void => {
-    this.settings.isWon = false
-    this.settings.isLose = false
-    this.settings.isStarted = true
-    this.settings.activeRow = 0
-    this.settings.words =
-      wordsArray[localeStore.locale.name as TLocaleNameStrict]
-    this.settings.hiddenWord = this.settings.words[
-      Math.floor(Math.random() * this.settings.words.length)
-    ]
-    this.settings.testingLine = ''
-    this.settings.lettersMissed.length = 0
-    this.settings.lettersMatched.length = 0
-    this.settings.gameField = [
-      ['', '', '', '', ''],
-      ['', '', '', '', ''],
-      ['', '', '', '', ''],
-      ['', '', '', '', ''],
-      ['', '', '', '', ''],
-      ['', '', '', '', ''],
-    ]
   }
 
   fillLine = (): void => {
