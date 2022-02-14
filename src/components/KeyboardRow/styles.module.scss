@@ -3,5 +3,13 @@
 .keyboard_row {
   width: 100%;
   height: 40px;
-  padding: 30px;
+  padding: $desktopPadding;
+
+  @media screen and (max-width: $tabletWidth) {
+    padding: $tabletPadding;
+  }
+
+  @media screen and (max-width: $mobileWidth) {
+    padding: $mobilePadding;
+  }
 }

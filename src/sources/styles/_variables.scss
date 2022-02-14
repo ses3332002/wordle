@@ -4,13 +4,18 @@ $defaultFontSize: 14px;
 $backgroundColor: rgb(220, 220, 220);
 $backgroundColorDark: rgb(40, 40, 40);
 
-$desktopWidth: 1600px;
+$desktopWidth: 740px;
+$tabletWidth: 580px;
+$mobileWidth: 480px;
+
+$desktopPadding: 30px;
+$tabletPadding: 26px 10px;
+$mobilePadding: 26px 4px;
+
 $widgetsEdge: 1060px;
 $widgetsRebuildTablet: 900px;
 $widgetsRebuildMobile: 640px;
 $widgetsHideIcons: 450px;
-$tabletWidth: 800px;
-$mobileWidth: 710px;
 
-$desktopPadding: 20px;
-$mobilePadding: 10px;
+$keyMatched: rgb(97, 255, 137);
+$keyMissed: rgb(255, 177, 177);

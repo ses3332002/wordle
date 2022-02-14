@@ -3,7 +3,7 @@
 .app {
   margin: 0 auto;
   display: flex;
-  max-width: $tabletWidth;
+  max-width: $desktopWidth;
   min-height: 100vh;
   flex-direction: column;
   align-items: center;
