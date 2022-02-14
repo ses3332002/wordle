@@ -1,0 +1,21 @@
+@import '../../sources/styles/variables';
+
+.gamefield_cell {
+  height: 50px;
+  width: 50px;
+  margin: 6px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.exactly {
+  background-color: $gamefieldExactly !important;
+}
+
+.twist {
+  animation: checking 0.4s ease-in-out;
+}

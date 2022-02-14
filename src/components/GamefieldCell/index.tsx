@@ -1,9 +1,9 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
-import classNames from 'classnames/bind'
+import classNames from 'classnames'
 import { useStore } from 'stores'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 function GamefieldCell({
   item,
@@ -29,7 +29,7 @@ function GamefieldCell({
       if (settingsStore.settings.lettersMissed.includes(item)) {
         return 'missed'
       } else if (settingsStore.settings.lettersMatched.includes(item)) {
-        if (settingsStore.settings.hiddenWord.includes(item, cellNumber)) {
+        if (settingsStore.settings.hiddenWord[cellNumber] === item) {
           return 'exactly'
         } else {
           return 'matched'
@@ -41,8 +41,7 @@ function GamefieldCell({
     return ''
   }
 
-  const cx = classNames.bind(styles)
-  const className = cx([
+  const className = classNames([
     'gamefield_cell',
     getLetterStyle(item),
     makeTwist(rowNumber),

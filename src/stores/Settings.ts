@@ -5,7 +5,7 @@ import {
   autorun,
   makeAutoObservable,
   // reaction,
-  // toJS,
+  toJS,
 } from 'mobx'
 import { ISettings, TLocaleNameStrict } from '../models'
 import { wordsArray } from 'i18n/words'
@@ -99,11 +99,17 @@ class SettingsStore {
     })
 
     if (this.settings.hiddenWord === this.settings.testingLine) {
-      this.settings.isWon = true
-      this.settings.isStarted = false
+      const temp = setTimeout(() => {
+        this.settings.isWon = true
+        this.settings.isStarted = false
+        clearTimeout(temp)
+      }, 1000)
     } else if (this.settings.activeRow === this.settings.gameField.length - 1) {
-      this.settings.isLose = true
-      this.settings.isStarted = false
+      const temp = setTimeout(() => {
+        this.settings.isLose = true
+        this.settings.isStarted = false
+        clearTimeout(temp)
+      }, 1000)
     }
   }
 
@@ -163,6 +169,7 @@ function checkLocalStorage(darkScheme: boolean | undefined): void {
 
 autorun(() => {
   checkLocalStorage(settingsStore.settings.darkScheme)
+
   if (settingsStore.settings.wordIsIncorrect) {
     message.warning(t('no_such_word'), 1)
   }

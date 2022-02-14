@@ -1,12 +1,5 @@
 @import '../../sources/styles/variables';
 
-.matched {
-  background-color: $keyMatched !important;
-}
-.missed {
-  background-color: $keyMissed !important;
-}
-
 .keyboard_key {
   @media screen and (max-width: $desktopWidth) {
     :global {

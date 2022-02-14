@@ -28462,3 +28462,51 @@ div.ant-typography-edit-content.ant-typography-rtl {
 .ant-upload-list-rtl.ant-upload-list-picture-card .ant-upload-list-item-info {
   padding: 0;
 }
+
+.gamefield_cell {
+  border: 2px solid rgb(17, 17, 17);
+  background-color: rgb(240, 240, 240);
+}
+
+.matched {
+  background-color: rgb(235, 245, 97);
+}
+
+.missed {
+  background-color: rgb(199, 199, 199);
+}
+
+@keyframes checking {
+  0% {
+    background-color: rgb(240, 240, 240);
+    transform: scaleY(0.3);
+  }
+  20% {
+    background-color: rgb(240, 240, 240);
+    transform: scaleY(0);
+  }
+  40% {
+    transform: scaleY(0.2);
+  }
+  60% {
+    transform: scaleY(0.6);
+  }
+  80% {
+    transform: scaleY(1.2);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+.key_matched {
+  background-color: rgb(177, 255, 197);
+}
+
+.key_missed {
+  background-color: rgb(255, 205, 205);
+}
+
+.welcome {
+  background-color: rgba(220, 220, 220, 0.9);
+}

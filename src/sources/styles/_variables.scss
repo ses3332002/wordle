@@ -1,9 +1,6 @@
 $defaultFont: Verdana, sans-serif;
 $defaultFontSize: 14px;
 
-$backgroundColor: rgb(220, 220, 220);
-$backgroundColorDark: rgb(40, 40, 40);
-
 $desktopWidth: 740px;
 $tabletWidth: 580px;
 $mobileWidth: 480px;
@@ -17,5 +14,21 @@ $widgetsRebuildTablet: 900px;
 $widgetsRebuildMobile: 640px;
 $widgetsHideIcons: 450px;
 
-$keyMatched: rgb(97, 255, 137);
-$keyMissed: rgb(255, 177, 177);
+$keyMatched: rgb(177, 255, 197);
+$keyMissed: rgb(255, 205, 205);
+$keyMatchedDark: rgb(0, 124, 31);
+$keyMissedDark: rgb(145, 0, 0);
+
+$gamefieldMatched: rgb(235, 245, 97);
+$gamefieldMatchedDark: rgb(238, 214, 0);
+$gamefieldMissed: rgb(199, 199, 199);
+$gamefieldMissedDark: rgb(139, 139, 139);
+$gamefieldExactly: rgb(18, 170, 4);
+
+$cellBorder: rgb(17, 17, 17);
+$cellBorderDark: rgb(226, 226, 226);
+
+$backgroundColor: rgb(240, 240, 240);
+$backgroundColorAlpha: rgba(220, 220, 220, 0.9);
+$backgroundDarkColor: rgb(40, 40, 40);
+$backgroundColorDarkAlpha: rgba(40, 40, 40, 0.9);

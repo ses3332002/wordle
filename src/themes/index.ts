@@ -1,6 +1,6 @@
 export const themes = {
-  light: `${process.env.PUBLIC_URL}/styles/antd.min.css`,
-  dark: `${process.env.PUBLIC_URL}/styles/antd.dark.min.css`,
+  light: `${process.env.PUBLIC_URL}/styles/styles.min.css`,
+  dark: `${process.env.PUBLIC_URL}/styles/styles.dark.min.css`,
 }
 
 export function getCurrentColorScheme(): 'dark' | 'light' {

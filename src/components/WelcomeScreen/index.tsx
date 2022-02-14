@@ -5,14 +5,14 @@ import { useTranslation } from 'react-i18next'
 
 import { useStore } from 'stores'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 function GameField(): React.ReactElement {
   const { settingsStore } = useStore()
   const { t } = useTranslation()
 
   return (
-    <div className={styles.welcome}>
+    <div className="welcome">
       {settingsStore.settings.isWon ? (
         <>
           <Typography.Title level={4}>

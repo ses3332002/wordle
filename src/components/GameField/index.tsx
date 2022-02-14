@@ -3,8 +3,6 @@ import { observer } from 'mobx-react-lite'
 import GamefieldRow from 'components/GamefieldRow'
 import { useStore } from 'stores'
 
-// import styles from './styles.module.scss'
-
 function GameField(): React.ReactElement {
   const { settingsStore } = useStore()
 

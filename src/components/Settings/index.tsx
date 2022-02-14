@@ -2,18 +2,17 @@ import React from 'react'
 import { Col, Modal, Row, Switch } from 'antd'
 import { useStore } from 'stores'
 import { useTranslation } from 'react-i18next'
-import styles from './styles.module.scss'
 
 function Settings(): React.ReactElement {
   const { settingsStore } = useStore()
   const { t } = useTranslation()
 
-  function changeHandler(value: boolean) {
+  function changeHandler(value: boolean): void {
     settingsStore.setDarkScheme(value)
   }
 
   return (
-    <div className={styles.settings}>
+    <div>
       <Modal
         title={t('settings')}
         style={{ top: 20 }}

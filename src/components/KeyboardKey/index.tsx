@@ -2,9 +2,9 @@ import React from 'react'
 import { Button } from 'antd'
 import { useStore } from 'stores'
 import { observer } from 'mobx-react-lite'
-import classNames from 'classnames/bind'
+import classNames from 'classnames'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 import { LeftOutlined, CheckOutlined } from '@ant-design/icons'
 
 function KeyboardKey({
@@ -14,13 +14,12 @@ function KeyboardKey({
 }): React.ReactElement | null {
   const isService = item === 'check' || item === 'backspace'
   const { settingsStore } = useStore()
-  const cx = classNames.bind(styles)
-  const className = cx([
+  const className = classNames([
     settingsStore.settings.lettersMatched.includes(item as string)
-      ? 'matched'
+      ? 'key_matched'
       : '',
     settingsStore.settings.lettersMissed.includes(item as string)
-      ? 'missed'
+      ? 'key_missed'
       : '',
   ])
 
@@ -38,7 +37,7 @@ function KeyboardKey({
     return null
   }
   return (
-    <div className={styles.keyboard_key}>
+    <div className="keyboard_key">
       <Button
         type={isService ? 'primary' : 'default'}
         danger={item === 'backspace' ? true : false}
