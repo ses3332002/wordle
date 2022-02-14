@@ -10,10 +10,8 @@
   flex-direction: column;
   padding: 20px;
 
-  :global {
-    .ant-typography {
-      text-align: center !important;
-      margin-top: 0 !important;
-    }
+  .ant-typography {
+    text-align: center !important;
+    margin-top: 0 !important;
   }
 }
