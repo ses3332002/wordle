@@ -11,6 +11,7 @@ import styles from './styles.module.scss'
 function Header(): React.ReactElement {
   const { settingsStore } = useStore()
   const { t } = useTranslation()
+
   return (
     <header className={styles.header}>
       <Row justify="space-between" align="middle">

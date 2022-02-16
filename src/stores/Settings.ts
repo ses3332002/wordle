@@ -1,10 +1,7 @@
 import {
-  observable,
-  action,
-  // computed,
   autorun,
   makeAutoObservable,
-  // reaction,
+  reaction,
   // toJS,
 } from 'mobx'
 import { ISettings, TLocaleNameStrict } from '../models'
@@ -19,7 +16,7 @@ class SettingsStore {
     makeAutoObservable(this)
   }
 
-  @observable settings: ISettings = {
+  settings: ISettings = {
     darkScheme: undefined,
     settingsIsShown: false,
     activeRow: 0,
@@ -42,19 +39,19 @@ class SettingsStore {
     ],
   }
 
-  @action showSettings = (): void => {
+  showSettings = (): void => {
     this.settings.settingsIsShown = true
   }
 
-  @action hideSettings = (): void => {
+  hideSettings = (): void => {
     this.settings.settingsIsShown = false
   }
 
-  @action setDarkScheme = (state: boolean): void => {
+  setDarkScheme = (state: boolean): void => {
     this.settings.darkScheme = state
   }
 
-  @action startGame = (): void => {
+  startGame = (): void => {
     this.settings.isWon = false
     this.settings.isLose = false
     this.settings.isStarted = true
@@ -77,7 +74,7 @@ class SettingsStore {
     ]
   }
 
-  @action addLetter = (letter: string): void => {
+  addLetter = (letter: string): void => {
     if (this.settings.testingLine.length === 5) {
       return
     }
@@ -85,7 +82,7 @@ class SettingsStore {
     this.fillLine()
   }
 
-  @action resetLetter = (): void => {
+  resetLetter = (): void => {
     if (this.settings.testingLine.length === 0) {
       return
     }
@@ -94,7 +91,7 @@ class SettingsStore {
     this.fillLine()
   }
 
-  @action checkWord = (): void => {
+  checkWord = (): void => {
     if (this.settings.testingLine.length !== 5) {
       return
     } else {
@@ -115,7 +112,7 @@ class SettingsStore {
           this.settings.isWon = true
           this.settings.isStarted = false
           clearTimeout(temp)
-        }, 1000)
+        }, 1500)
       } else if (
         this.settings.activeRow ===
         this.settings.gameField.length - 1
@@ -124,7 +121,7 @@ class SettingsStore {
           this.settings.isLose = true
           this.settings.isStarted = false
           clearTimeout(temp)
-        }, 1000)
+        }, 1500)
       }
 
       this.settings.activeRow++
@@ -165,10 +162,16 @@ function checkLocalStorage(darkScheme: boolean | undefined): void {
 
 autorun(() => {
   checkLocalStorage(settingsStore.settings.darkScheme)
-
-  if (settingsStore.settings.wordIsIncorrect) {
-    message.warning(t('no_such_word'), 1)
-  }
 })
+
+reaction(
+  () => settingsStore.settings.wordIsIncorrect,
+  wordIsIncorrect => {
+    if (wordIsIncorrect) {
+      message.warning(t('no_such_word'), 1)
+    }
+  },
+  { delay: 0 }
+)
 
 export default settingsStore

@@ -7,7 +7,7 @@ import { useStore } from 'stores'
 
 import './styles.scss'
 
-function GameField(): React.ReactElement {
+function WelcomeScreen(): React.ReactElement {
   const { settingsStore } = useStore()
   const { t } = useTranslation()
 
@@ -40,4 +40,4 @@ function GameField(): React.ReactElement {
   )
 }
 
-export default observer(GameField)
+export default observer(WelcomeScreen)
