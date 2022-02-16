@@ -1,6 +1,8 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
+
 import GamefieldRow from 'components/GamefieldRow'
+
 import { useStore } from 'stores'
 
 function GameField(): React.ReactElement {

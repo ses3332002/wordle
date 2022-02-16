@@ -1,8 +1,9 @@
 import React from 'react'
 import { Row } from 'antd'
 
-import styles from './styles.module.scss'
 import KeyboardKey from 'components/KeyboardKey'
+
+import styles from './styles.module.scss'
 
 function KeyboardRow({
   rowKeys,

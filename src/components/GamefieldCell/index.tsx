@@ -1,6 +1,7 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
 import classNames from 'classnames'
+
 import { useStore } from 'stores'
 
 import './styles.scss'

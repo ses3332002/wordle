@@ -1,11 +1,14 @@
 import React from 'react'
-import { useTranslation } from 'react-i18next'
 import { observer } from 'mobx-react-lite'
-import { useStore } from 'stores'
+import { useTranslation } from 'react-i18next'
+import { Col, Row, Typography } from 'antd'
+
 import LanguageSelector from 'components/LanguageSelector'
 import Settings from 'components/Settings'
 import Menu from 'components/Menu'
-import { Col, Row, Typography } from 'antd'
+
+import { useStore } from 'stores'
+
 import styles from './styles.module.scss'
 
 function Header(): React.ReactElement {

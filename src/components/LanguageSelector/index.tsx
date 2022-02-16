@@ -1,24 +1,25 @@
 import React from 'react'
-import { Select } from 'antd'
-import { useStore } from 'stores'
-import { useTranslation } from 'react-i18next'
 import { observer } from 'mobx-react-lite'
+import { Select } from 'antd'
+import { useTranslation } from 'react-i18next'
+
+import { useStore } from 'stores'
 
 import enIcon from '../../sources/images/en_icon.png'
 import heIcon from '../../sources/images/he_icon.png'
 import ruIcon from '../../sources/images/ru_icon.png'
 import ukIcon from '../../sources/images/uk_icon.png'
 
+const { Option } = Select
+
 function LanguageSelector(): React.ReactElement {
   const { localeStore, settingsStore } = useStore()
   const { locale } = localeStore
-
   const { t } = useTranslation()
 
   function languageSelectHandler(value: any): void {
     localeStore.setLocale(value)
   }
-  const { Option } = Select
 
   return (
     <Select

@@ -1,7 +1,8 @@
 import React from 'react'
-import { Col, Modal, Row, Switch } from 'antd'
-import { useStore } from 'stores'
 import { useTranslation } from 'react-i18next'
+import { Col, Modal, Row, Switch } from 'antd'
+
+import { useStore } from 'stores'
 
 function Settings(): React.ReactElement {
   const { settingsStore } = useStore()

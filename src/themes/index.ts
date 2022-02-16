@@ -3,6 +3,10 @@ export const themes = {
   dark: `${process.env.PUBLIC_URL}/styles/styles.dark.min.css`,
 }
 
+export const colorSchemeQuery = window.matchMedia(
+  '(prefers-color-scheme: dark)'
+)
+
 export function getCurrentColorScheme(): 'dark' | 'light' {
   if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
     return 'dark'
@@ -10,7 +14,3 @@ export function getCurrentColorScheme(): 'dark' | 'light' {
     return 'light'
   }
 }
-
-export const colorSchemeQuery = window.matchMedia(
-  '(prefers-color-scheme: dark)'
-)

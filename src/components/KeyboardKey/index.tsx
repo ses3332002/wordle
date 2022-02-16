@@ -1,11 +1,12 @@
 import React from 'react'
-import { Button } from 'antd'
-import { useStore } from 'stores'
 import { observer } from 'mobx-react-lite'
 import classNames from 'classnames'
+import { Button } from 'antd'
+import { LeftOutlined, CheckOutlined } from '@ant-design/icons'
+
+import { useStore } from 'stores'
 
 import './styles.scss'
-import { LeftOutlined, CheckOutlined } from '@ant-design/icons'
 
 function KeyboardKey({
   item,

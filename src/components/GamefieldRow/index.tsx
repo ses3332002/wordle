@@ -1,9 +1,12 @@
 import React from 'react'
+import { observer } from 'mobx-react-lite'
 import { Row } from 'antd'
 import classNames from 'classnames/bind'
+
 import GamefieldCell from 'components/GamefieldCell'
-import { observer } from 'mobx-react-lite'
+
 import { useStore } from 'stores'
+
 import styles from './styles.module.scss'
 
 function GamefieldRow({
@@ -22,6 +25,7 @@ function GamefieldRow({
       ? 'incorrect'
       : '',
   ])
+
   return (
     <div className={className}>
       <Row align="middle" justify="space-between">
