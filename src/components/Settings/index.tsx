@@ -1,5 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import { observer } from 'mobx-react-lite'
 import { Col, Modal, Row, Switch } from 'antd'
 
 import { useStore } from 'stores'
@@ -37,4 +38,4 @@ function Settings(): React.ReactElement {
   )
 }
 
-export default Settings
+export default observer(Settings)

@@ -2,6 +2,7 @@ import React from 'react'
 import { ConfigProvider } from 'antd'
 import { observer } from 'mobx-react-lite'
 import { ThemeSwitcherProvider } from 'react-css-theme-switcher'
+
 import { colorSchemeQuery, getCurrentColorScheme, themes } from 'themes'
 
 import 'moment/locale/he'
